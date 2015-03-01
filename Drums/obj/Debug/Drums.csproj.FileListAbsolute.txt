@@ -9,3 +9,14 @@ c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debu
 c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\obj\Debug\Drums.csprojResolveAssemblyReference.cache
 c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\obj\Debug\Drums.exe
 c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\obj\Debug\Drums.pdb
+D:\code\MidiSequencer\Drums\bin\Debug\Drums.exe.config
+D:\code\MidiSequencer\Drums\obj\Debug\Drums.csprojResolveAssemblyReference.cache
+D:\code\MidiSequencer\Drums\bin\Debug\Drums.exe
+D:\code\MidiSequencer\Drums\bin\Debug\Drums.pdb
+D:\code\MidiSequencer\Drums\bin\Debug\Sanford.Collections.dll
+D:\code\MidiSequencer\Drums\bin\Debug\Sanford.Multimedia.dll
+D:\code\MidiSequencer\Drums\bin\Debug\Sanford.Multimedia.Midi.dll
+D:\code\MidiSequencer\Drums\bin\Debug\Sanford.Multimedia.Timers.dll
+D:\code\MidiSequencer\Drums\bin\Debug\Sanford.Threading.dll
+D:\code\MidiSequencer\Drums\obj\Debug\Drums.exe
+D:\code\MidiSequencer\Drums\obj\Debug\Drums.pdb

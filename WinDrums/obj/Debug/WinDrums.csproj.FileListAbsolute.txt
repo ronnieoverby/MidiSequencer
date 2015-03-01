@@ -20,3 +20,27 @@ c:\Users\dsoverby1986\documents\visual studio 2013\Projects\Drums\WinDrums\bin\D
 c:\Users\dsoverby1986\documents\visual studio 2013\Projects\Drums\WinDrums\bin\Debug\System.Reactive.Interfaces.xml
 c:\Users\dsoverby1986\documents\visual studio 2013\Projects\Drums\WinDrums\bin\Debug\System.Reactive.Linq.xml
 c:\Users\dsoverby1986\documents\visual studio 2013\Projects\Drums\WinDrums\bin\Debug\System.Reactive.PlatformServices.xml
+D:\code\MidiSequencer\WinDrums\bin\Debug\WinDrums.exe.config
+D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.csprojResolveAssemblyReference.cache
+D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.Form1.resources
+D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.Properties.Resources.resources
+D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.csproj.GenerateResource.Cache
+D:\code\MidiSequencer\WinDrums\bin\Debug\WinDrums.exe
+D:\code\MidiSequencer\WinDrums\bin\Debug\WinDrums.pdb
+D:\code\MidiSequencer\WinDrums\bin\Debug\Sanford.Collections.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\Sanford.Multimedia.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\Sanford.Multimedia.Midi.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\Sanford.Multimedia.Timers.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\Sanford.Threading.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.Core.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.Interfaces.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.Linq.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.PlatformServices.dll
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.Core.xml
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.Interfaces.xml
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.Linq.xml
+D:\code\MidiSequencer\WinDrums\bin\Debug\System.Reactive.PlatformServices.xml
+D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.exe
+D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.pdb
+D:\Code\MidiSequencer\WinDrums\bin\Debug\CoreTechs.Common.dll
+D:\Code\MidiSequencer\WinDrums\bin\Debug\CoreTechs.Common.pdb
