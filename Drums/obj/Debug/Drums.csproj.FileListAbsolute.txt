@@ -1,0 +1,11 @@
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Drums.exe.config
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Drums.exe
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Drums.pdb
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Sanford.Collections.dll
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Sanford.Multimedia.dll
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Sanford.Multimedia.Midi.dll
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Sanford.Multimedia.Timers.dll
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\bin\Debug\Sanford.Threading.dll
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\obj\Debug\Drums.csprojResolveAssemblyReference.cache
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\obj\Debug\Drums.exe
+c:\users\dsoverby1986\documents\visual studio 2013\Projects\Drums\Drums\obj\Debug\Drums.pdb

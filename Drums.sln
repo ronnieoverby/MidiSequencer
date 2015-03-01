@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drums", "Drums\Drums.csproj", "{1DB270BF-AD58-4154-A14F-861F489FC836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinDrums", "WinDrums\WinDrums.csproj", "{BAAE1524-77E4-453B-AEA2-454D777B6C24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DB270BF-AD58-4154-A14F-861F489FC836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB270BF-AD58-4154-A14F-861F489FC836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB270BF-AD58-4154-A14F-861F489FC836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB270BF-AD58-4154-A14F-861F489FC836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAAE1524-77E4-453B-AEA2-454D777B6C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAAE1524-77E4-453B-AEA2-454D777B6C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAAE1524-77E4-453B-AEA2-454D777B6C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAAE1524-77E4-453B-AEA2-454D777B6C24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
