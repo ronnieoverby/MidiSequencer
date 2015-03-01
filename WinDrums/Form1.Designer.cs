@@ -37,8 +37,11 @@ namespace WinDrums
             this.Channel = new System.Windows.Forms.Label();
             this.cboDevices = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.trkHumanize = new System.Windows.Forms.TrackBar();
+            this.lblh = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numFrameLen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChannel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkHumanize)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPatterns
@@ -75,7 +78,7 @@ namespace WinDrums
             // 
             // numChannel
             // 
-            this.numChannel.Location = new System.Drawing.Point(301, 25);
+            this.numChannel.Location = new System.Drawing.Point(211, 25);
             this.numChannel.Name = "numChannel";
             this.numChannel.Size = new System.Drawing.Size(120, 20);
             this.numChannel.TabIndex = 2;
@@ -97,7 +100,7 @@ namespace WinDrums
             // Channel
             // 
             this.Channel.AutoSize = true;
-            this.Channel.Location = new System.Drawing.Point(298, 8);
+            this.Channel.Location = new System.Drawing.Point(208, 9);
             this.Channel.Name = "Channel";
             this.Channel.Size = new System.Drawing.Size(46, 13);
             this.Channel.TabIndex = 3;
@@ -122,11 +125,33 @@ namespace WinDrums
             this.label2.TabIndex = 5;
             this.label2.Text = "Output Devices";
             // 
+            // trkHumanize
+            // 
+            this.trkHumanize.LargeChange = 15;
+            this.trkHumanize.Location = new System.Drawing.Point(400, 19);
+            this.trkHumanize.Maximum = 75;
+            this.trkHumanize.Name = "trkHumanize";
+            this.trkHumanize.Size = new System.Drawing.Size(104, 45);
+            this.trkHumanize.SmallChange = 5;
+            this.trkHumanize.TabIndex = 6;
+            this.trkHumanize.Value = 15;
+            this.trkHumanize.Scroll += new System.EventHandler(this.trkHumanize_Scroll);
+            // 
+            // lblh
+            // 
+            this.lblh.AutoSize = true;
+            this.lblh.Location = new System.Drawing.Point(404, 8);
+            this.lblh.Name = "lblh";
+            this.lblh.Size = new System.Drawing.Size(54, 13);
+            this.lblh.TabIndex = 5;
+            this.lblh.Text = "Humanize";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 479);
+            this.Controls.Add(this.lblh);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboDevices);
             this.Controls.Add(this.Channel);
@@ -134,10 +159,12 @@ namespace WinDrums
             this.Controls.Add(this.numChannel);
             this.Controls.Add(this.numFrameLen);
             this.Controls.Add(this.txtPatterns);
+            this.Controls.Add(this.trkHumanize);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.numFrameLen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChannel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkHumanize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +179,8 @@ namespace WinDrums
         private System.Windows.Forms.Label Channel;
         private System.Windows.Forms.ComboBox cboDevices;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar trkHumanize;
+        private System.Windows.Forms.Label lblh;
     }
 }
 

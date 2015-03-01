@@ -1,4 +1,5 @@
-﻿using Sanford.Multimedia.Midi;
+﻿using CoreTechs.Common;
+using Sanford.Multimedia.Midi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,12 @@ namespace WinDrums
         CancellationTokenSource _cts;
         private readonly IDisposable _changeSubscription;
         private readonly Regex _rgx = new Regex(@"(?<note>\d+)\|(?<pattern>.+?)\|", RegexOptions.Compiled | RegexOptions.Multiline);
+        private int _humanizationMax;
 
         public Form1()
         {
+            InitializeComponent();
+
             Closing += (s, e) =>
             {
                 using (_changeSubscription)
@@ -30,14 +34,15 @@ namespace WinDrums
             };
 
             Load += OnLoad;
-            InitializeComponent();
+            _humanizationMax = trkHumanize.Value;
 
             _changeSubscription = Observable.FromEventPattern(
                 h => txtPatterns.TextChanged += h,
                 h => txtPatterns.TextChanged -= h)
-                .Throttle(TimeSpan.FromSeconds(.75))
+                .Throttle(TimeSpan.FromSeconds(1))
                 .ObserveOn(SynchronizationContext.Current)
                 .Subscribe(_ => RestartTheMusic());
+
         }
 
         private void OnLoad(object sender, EventArgs eventArgs)
@@ -91,14 +96,17 @@ namespace WinDrums
             {
                 foreach (var frame in frames.TakeWhile(_ => !_cts.IsCancellationRequested))
                 {
-                    foreach (var hit in frame)
-                    {
-                        if (hit == null)
-                            continue;
+                    var hitTasks = frame
+                        .Where(hit => hit != null)
+                        .Select(hit => Task
+                            .Delay(RNG.Next(_humanizationMax))
+                            .ContinueWith(at =>
+                            {
+                                od.PlayAsync((int) numChannel.Value, hit.Note, hit.Velocity);
+                            }))
+                        .ToArray();
 
-                        od.PlayAsync((int) numChannel.Value, hit.Note, hit.Velocity);
-                    }
-
+                    Task.WaitAll(hitTasks);
                     Thread.Sleep((int)numFrameLen.Value);
                 }
             }
@@ -123,6 +131,11 @@ namespace WinDrums
         private void cboDevices_SelectedIndexChanged(object sender, EventArgs e)
         {
             RestartTheMusic();
+        }
+
+        private void trkHumanize_Scroll(object sender, EventArgs e)
+        {
+            _humanizationMax = trkHumanize.Value;
         }
 
     }
