@@ -1,0 +1,10 @@
+﻿<pattern frameLength="260">
+36|*   | Bass Drum 1
+38|  * | Acoustic Snare
+46| * | Open HiHat
+42|- -| Closed Hi Hat
+45| * * * * * 989   | Low Tom
+43|           989767| High Floor Tom
+41|              878| Low Floor Tom
+56| *   | Cowbell
+</pattern>

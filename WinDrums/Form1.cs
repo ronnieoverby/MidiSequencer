@@ -1,9 +1,9 @@
-﻿using CoreTechs.Common;
+﻿using System.Xml.Linq;
+using CoreTechs.Common;
 using Sanford.Multimedia.Midi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,38 +15,63 @@ namespace WinDrums
     {
         Task _player;
         CancellationTokenSource _cts;
-        private readonly IDisposable _changeSubscription;
         private readonly Regex _rgx = new Regex(@"(?<note>\d+)\|(?<pattern>.+?)\|", RegexOptions.Compiled | RegexOptions.Multiline);
-        private int _humanizationMax;
+        private decimal _humPct;
 
         public Form1()
         {
             InitializeComponent();
+            SetupDrumsMenu();
+            SetInitialPattern();
 
-            Closing += (s, e) =>
-            {
-                using (_changeSubscription)
-                {
-                    if (_cts != null)
-                        _cts.Cancel();
-                }
-
-            };
+            Closing += (s, e) => StopTheMusic();
 
             Load += OnLoad;
-            _humanizationMax = trkHumanize.Value;
+            SetHumanizationPct();
+        }
 
-            _changeSubscription = Observable.FromEventPattern(
-                h => txtPatterns.TextChanged += h,
-                h => txtPatterns.TextChanged -= h)
-                .Throttle(TimeSpan.FromSeconds(1))
-                .ObserveOn(SynchronizationContext.Current)
-                .Subscribe(_ => RestartTheMusic());
+        private void SetupDrumsMenu()
+        {
+            var drums = from el in XElement.Parse(Resources.drums).Elements("drum")
+                let note = el.Attribute("note").Value.ConvertTo<int>()
+                let name = el.Attribute("name").Value
+                select new {note, name};
 
+            var drumsMenu = (ToolStripMenuItem)contextMenuStrip1.Items.Add("Drums");
+
+            foreach (var drum in drums)
+            {
+                var drumItem = (ToolStripMenuItem)drumsMenu.DropDownItems.Add(string.Format("{1}: {0}", drum.name,drum.note));
+                drumItem.Click += (sender, args) =>
+                {
+                    txtPatterns.AppendText(Environment.NewLine);
+                    txtPatterns.AppendText(string.Format("{1}|*| {0}", drum.name, drum.note));
+                };
+            }
+        }
+
+        private void SetInitialPattern()
+        {
+            var ptn = new[]
+            {
+                Resources.ShoveIt,
+                Resources.Fonkay,
+            }
+            .Select(XElement.Parse)
+            .Select(x => new
+            {
+                text = x.Value.NormalizeLineEndings(),
+                frameLen = x.Attribute("frameLength").Value.Parse(decimal.Parse)
+            })
+            .RandomElement();
+
+            txtPatterns.Text = ptn.text;
+            numFrameLen.Value = ptn.frameLen;
         }
 
         private void OnLoad(object sender, EventArgs eventArgs)
         {
+
             cboDevices.Items.AddRange(GetOutputDevices().Select(x => x.name).ToArray());
             cboDevices.SelectedIndex = 0;
         }
@@ -58,14 +83,7 @@ namespace WinDrums
 
         private void RestartTheMusic()
         {
-            if (_cts != null)
-                using (_cts)
-                {
-                    _cts.Cancel();
-
-                    using (_player)
-                        _player.Wait();
-                }
+            StopTheMusic();
 
             Thread.Sleep(500);
 
@@ -74,17 +92,37 @@ namespace WinDrums
             _player = Task.Run(() => PlayThatFunkyMusic(deviceId));
         }
 
+        private void StopTheMusic()
+        {
+            if (_cts == null) return;
+            using (_cts)
+            {
+                _cts.Cancel();
+
+                using (_player)
+                    _player.Wait();
+            }
+
+            _cts = null;
+        }
+
+        
+
+        
         private void PlayThatFunkyMusic(int deviceId)
         {
-            // get all lines that have the correct format
-            var tracks = _rgx.Matches(txtPatterns.Text)
+            var txt = txtPatterns.Text.ReadLines().Where(x => !x.Trim().StartsWith("#")).Join(Environment.NewLine);
+
+            // txt contains the textbox text without commented lines (lines starting with '#')
+
+            var tracks = _rgx.Matches(txt)
                 .Cast<Match>()
                 .Select(m => new
                 {
                     Note = int.Parse(m.Groups["note"].Value),
                     Pattern = m.Groups["pattern"].Value.Trim('\r', '\n'),
                 })
-                .Select(x => new Track(x.Note, x.Pattern))
+                .Select(x => new Track(x.Note, x.Pattern,true))
                 .ToArray();
 
             if (tracks.Length == 0)
@@ -94,24 +132,36 @@ namespace WinDrums
 
             using (var od = new OutputDevice(deviceId))
             {
+                var sw = Stopwatch.StartNew();
                 foreach (var frame in frames.TakeWhile(_ => !_cts.IsCancellationRequested))
                 {
+                    sw.Restart();
                     var hitTasks = frame
                         .Where(hit => hit != null)
-                        .Select(hit => Task
-                            .Delay(RNG.Next(_humanizationMax))
-                            .ContinueWith(at =>
-                            {
-                                od.PlayAsync((int) numChannel.Value, hit.Note, hit.Velocity);
-                            }))
+                        .Select(hit =>
+                            GetHumanDelay()
+                                .ContinueWith(at =>
+                                    od.PlayAsync((int) numChannel.Value, hit.Note, hit.Velocity)
+                                ))
                         .ToArray();
 
                     Task.WaitAll(hitTasks);
-                    Thread.Sleep((int)numFrameLen.Value);
+                    var millisecondsTimeout = (int)numFrameLen.Value - (int)sw.Elapsed.TotalMilliseconds;
+                    if (millisecondsTimeout > 0)
+                        Thread.Sleep(millisecondsTimeout);
                 }
             }
         }
 
+        Task GetHumanDelay()
+        {
+            if (_humPct == 0)
+                return Task.FromResult(0);
+
+            var maxDelay = (int) Math.Round((numFrameLen.Value/1/*conrols how much the drummer can screw up*/)*_humPct, 0);
+            var delay = RNG.Next(maxDelay);
+            return Task.Delay(delay);
+        }
 
         static IEnumerable<T[]> Merge<T>(params IEnumerable<T>[] sequences)
         {
@@ -130,13 +180,28 @@ namespace WinDrums
 
         private void cboDevices_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RestartTheMusic();
+            if (_cts != null)
+                RestartTheMusic();
         }
 
         private void trkHumanize_Scroll(object sender, EventArgs e)
         {
-            _humanizationMax = trkHumanize.Value;
+            SetHumanizationPct();
         }
 
+        private void SetHumanizationPct()
+        {
+            _humPct = trkHumanize.Value/100m;
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            RestartTheMusic();
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            StopTheMusic();
+        }
     }
 }

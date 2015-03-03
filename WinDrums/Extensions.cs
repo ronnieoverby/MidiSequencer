@@ -1,4 +1,7 @@
+using System;
+using System.IO;
 using System.Threading.Tasks;
+using CoreTechs.Common;
 using Sanford.Multimedia.Midi;
 
 namespace WinDrums
@@ -10,6 +13,12 @@ namespace WinDrums
             od.Send(new ChannelMessage(ChannelCommand.NoteOn, channel, data1, data2));
             await Task.Delay(noteDuration);
             od.Send(new ChannelMessage(ChannelCommand.NoteOff, channel, data1));
+        }
+
+        public static string NormalizeLineEndings(this string s)
+        {
+            using (var reader = new StringReader(s))
+                return reader.ReadLines().Join(Environment.NewLine).Trim();
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿<drums>
+  <drum note="35" name="Acoustic Bass Drum" />
+  <drum note="36" name="Bass Drum 1" />
+  <drum note="37" name="Side Stick" />
+  <drum note="38" name="Acoustic Snare" />
+  <drum note="39" name="Hand Clap" />
+  <drum note="40" name="Electric Snare" />
+  <drum note="41" name="Low Floor Tom" />
+  <drum note="42" name="Closed Hi Hat" />
+  <drum note="43" name="High Floor Tom" />
+  <drum note="44" name="Pedal HiHat" />
+  <drum note="45" name="Low Tom" />
+  <drum note="46" name="Open HiHat" />
+  <drum note="47" name="LowMid Tom" />
+  <drum note="48" name="HiMid Tom" />
+  <drum note="49" name="Crash Cymbal 1" />
+  <drum note="50" name="High Tom" />
+  <drum note="51" name="Ride Cymbal 1" />
+  <drum note="52" name="Chinese Cymbal" />
+  <drum note="53" name="Ride Bell" />
+  <drum note="54" name="Tambourine" />
+  <drum note="55" name="Splash Cymbal" />
+  <drum note="56" name="Cowbell" />
+  <drum note="57" name="Crash Cymbal 2" />
+  <drum note="58" name="Vibraslap" />
+  <drum note="59" name="Ride Cymbal 2" />
+  <drum note="60" name="Hi Bongo" />
+  <drum note="61" name="Low Bongo" />
+  <drum note="62" name="Mute Hi Conga" />
+  <drum note="63" name="Open Hi Conga" />
+  <drum note="64" name="Low Conga" />
+  <drum note="65" name="High Timbale" />
+  <drum note="66" name="Low Timbale" />
+  <drum note="67" name="High Agogo" />
+  <drum note="68" name="Low Agogo" />
+  <drum note="69" name="Cabasa" />
+  <drum note="70" name="Maracas" />
+  <drum note="71" name="Short Whistle" />
+  <drum note="72" name="Long Whistle" />
+  <drum note="73" name="Short Guiro" />
+  <drum note="74" name="Long Guiro" />
+  <drum note="75" name="Claves" />
+  <drum note="76" name="Hi Wood Block" />
+  <drum note="77" name="Low Wood Block" />
+  <drum note="78" name="Mute Cuica" />
+  <drum note="79" name="Open Cuica" />
+  <drum note="80" name="Mute Triangle" />
+  <drum note="81" name="Open Triangle" />
+</drums>

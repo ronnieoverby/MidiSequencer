@@ -10,11 +10,13 @@ namespace WinDrums
     {
         private readonly int _note;
         private readonly string _pattern;
+        private readonly bool _playForever;
 
-        public Track(int note, string pattern)
+        public Track(int note, string pattern, bool playForever)
         {
             _note = note;
             _pattern = pattern;
+            _playForever = playForever;
         }
 
         static int ParseVelocity(char c)
@@ -59,7 +61,7 @@ namespace WinDrums
             if (string.IsNullOrWhiteSpace(_pattern))
                 yield break;
 
-            while (true)
+            do
             {
                 foreach (var c in _pattern)
                 {
@@ -72,7 +74,7 @@ namespace WinDrums
                     var velocity = ParseVelocity(c);
                     yield return new MidiNote(_note, velocity);
                 }
-            }
+            } while (_playForever);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

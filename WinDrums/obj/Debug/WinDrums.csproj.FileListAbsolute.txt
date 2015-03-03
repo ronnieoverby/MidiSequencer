@@ -44,3 +44,4 @@ D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.exe
 D:\code\MidiSequencer\WinDrums\obj\Debug\WinDrums.pdb
 D:\Code\MidiSequencer\WinDrums\bin\Debug\CoreTechs.Common.dll
 D:\Code\MidiSequencer\WinDrums\bin\Debug\CoreTechs.Common.pdb
+D:\Code\MidiSequencer\WinDrums\obj\Debug\WinDrums.Resources.resources
